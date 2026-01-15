@@ -1,9 +1,10 @@
+
+
 'use strict';
 
-const mongoose = require('./../db.js');
-// const mongoose = require('mongoose'); //only for seeding mock data
+import { Schema, model,Document, type InferSchemaType, Types } from "mongoose";
 
-const bookSchema = new mongoose.Schema({
+const bookSchema = new Schema({
   worksKey: {
     type: String,
     required: false,
@@ -53,6 +54,12 @@ const bookSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-const Book = mongoose.model('Book', bookSchema);
+export type BookType = InferSchemaType<typeof bookSchema>
 
-module.exports = Book;
+export interface IBook extends BookType, Document {
+
+}
+
+const Book = model<IBook>('Book',bookSchema) 
+
+export default Book;
