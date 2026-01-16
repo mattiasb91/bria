@@ -11,3 +11,15 @@ import { expect, test } from 'vitest'
         .expect(200);
         expect(res.body)
     })
+
+    // Test Broken router 404 
+    // Test userbooks update status 
+    
+    // Post request successful creation 
+    // Post request failed creation
+
+
+    //Db connection  failed and successful attempt
+    
+    //use mock db data  
+    

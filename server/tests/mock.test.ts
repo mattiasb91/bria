@@ -1,0 +1,21 @@
+export const userBook = {
+  _id: "6968cb1bc4961a77dd76406f",
+  userId: "64a0c0b0c3f8fa2d1e4b0001",
+  bookId: "6968cb1bc4961a77dd76406c",
+  shelfIds: [
+    "64a0c0b0c3f8fa2d1e4c0011",
+    "64a0c0b0c3f8fa2d1e4c0002",
+    "64a0c0b0c3f8fa2d1e4c0003",
+  ],
+  progress: 0,
+  readCount: 0,
+  read: false,
+  owned: true,
+  favorite: true,
+  status: "not reading",
+  format: ["physical"],
+  reads: [],
+  createdAt: "2026-01-15T11:10:19.636Z",
+  updatedAt: "2026-01-15T11:41:47.705Z",
+  __v: 0,
+};

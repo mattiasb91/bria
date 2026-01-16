@@ -30,6 +30,7 @@ export async function updateUserBookStatus(req: Request, res: Response) {
     const updatedBook = await UserBook.findByIdAndUpdate(bookId, status, {
       new: true,
     });
+    console.log("updated book",updatedBook);
     res.status(200).json(updatedBook);
   } catch (error) {
     console.log(error);
