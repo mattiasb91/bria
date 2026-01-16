@@ -3,7 +3,7 @@ import BookShelf from '../BookShelf/BookShelf';
 
 function Shelves ({books, setBooks}) {
   return (
-    //TODO: change to not hardcode Ids
+    //TODO: give Valadition whether the book has been readed 
     <div className="shelves-container">
       <BookShelf 
         title="Want to Read" 
