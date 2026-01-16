@@ -11,7 +11,7 @@ export async function getUserBooks(req: Request, res: Response) {
       .sort({ createdAt: 1 })
       .populate("bookId");
     console.log("userBooks in getuserbooks userbooks controller: ", userBooks);
-    res.status(201).json(userBooks);
+    res.status(200).json(userBooks);
   } catch (error) {
     console.log(error);
     res.status(500).json({
