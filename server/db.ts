@@ -1,6 +1,5 @@
 import "dotenv/config";
 import mongoose from "mongoose";
-
 const DB_PORT = process.env.DB_PORT ?? "27017";
 const DB_NAME = process.env.DB_NAME;
 const MONGODB_URI =
@@ -10,7 +9,12 @@ if (!DB_NAME) {
   throw new Error("DB_NAME is not defined in environment variables");
 }
 
-await mongoose.connect(MONGODB_URI);
-console.log("Connected to db:", MONGODB_URI);
+export async function connectDB() {
+  try {
+    await mongoose.connect(MONGODB_URI);
+    console.log("Connected to db:", MONGODB_URI);
+  } catch (err) {
+    console.log("Connection failed")
+  }
+}
 
-export default mongoose;

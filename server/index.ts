@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import router from "./router.js"; // <-- note the .js extension for NodeNext/ESM
-
+import router from "./router.js"; 
+import { connectDB } from "./db.js";
 const app = express();
 const PORT = 3000;
 
@@ -9,6 +9,14 @@ app.use(cors());
 app.use(express.json());
 app.use(router);
 
-app.listen(PORT, () => {
-  console.log(`Running on port ${PORT} 📚`);
-});
+(async () => {
+  try {
+    await connectDB();
+    console.log('connected to mongoose');
+    app.listen(PORT);
+  } catch (e) {
+    console.log('could not start server');
+  }
+})()
+
+
