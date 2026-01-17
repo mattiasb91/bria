@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest",
+    "test:postbook": "vitest run tests/postBook.test.ts",
     "dev": "node --loader ts-node/esm ./index.ts"
   },
   "keywords": [],
