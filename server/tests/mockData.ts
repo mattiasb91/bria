@@ -19,3 +19,21 @@ export const userBook = {
   updatedAt: "2026-01-15T11:41:47.705Z",
   __v: 0,
 };
+
+export const book = {
+  title: "Test Book",
+  authors: ["T. Test"],
+  isbn: "1111111111",
+  cover: 9999999,
+  worksKey: "TEST_WORK_KEY",
+  editionKey: "TEST_EDITION_KEY",
+  pages: 180,
+  publishedDate: "1973-01-01T00:00:00.000Z",
+  description: "Test description.",
+  userData: {
+    status: "not reading",
+    favorite: true,
+    owned: true,
+    format: ["physical"],
+  },
+};
