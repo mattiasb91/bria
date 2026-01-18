@@ -10,9 +10,18 @@ import { expect, test } from 'vitest'
         .expect("Content-Type", /json/)
         .expect(200);
         expect(res.body)
-    })
+    }) 
+     
+  test("should return 404 and JSON for non-existent routes", async () => {
+  await request(app)
+    .get("/userbooks-invalid-path")
+    .expect("Content-Type", /json/)
+    .expect(404);
+});
 
-    // Test Broken router 404 
+
+
+
     // Test userbooks update status 
     
     // Post request successful creation 
