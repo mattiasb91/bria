@@ -1,4 +1,3 @@
-// tests/db.test.ts
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import mongoose from 'mongoose';
 import { connectDB } from '../db.js';
