@@ -22,12 +22,11 @@ export async function getUserBooks(req: Request, res: Response) {
 }
 
 export async function updateUserBookStatus(req: Request, res: Response) {
-  const { bookId } = req.params;
+  const { id } = req.params;
   const status = req.body;
-  console.log(bookId);
-  console.log(status);
+
   try {
-    const updatedBook = await UserBook.findByIdAndUpdate(bookId, status, {
+    const updatedBook = await UserBook.findByIdAndUpdate(id, status, {
       new: true,
     });
     console.log("updated book",updatedBook);
@@ -40,12 +39,11 @@ export async function updateUserBookStatus(req: Request, res: Response) {
 }
 
 export async function updateUserBookOwned(req: Request, res: Response) {
-  const { bookId } = req.params;
+  const { id } = req.params;
   const owned = req.body;
-  console.log(bookId);
-  console.log(owned);
+
   try {
-    const updatedBook = await UserBook.findByIdAndUpdate(bookId, owned, {
+    const updatedBook = await UserBook.findByIdAndUpdate(id, owned, {
       new: true,
     });
     res.status(200).json(updatedBook);
