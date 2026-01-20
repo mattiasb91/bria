@@ -1,13 +1,14 @@
-import express from "express";
-import cors from "cors";
-import router from "./router.js"; 
+import  app from "./app.js";
+// import express from "express";
+// import cors from "cors";
+// import router from "./router.js";
 import { connectDB } from "./db.js";
-const app = express();
+//const app = express();
 const PORT = 3000;
 
-app.use(cors());
-app.use(express.json());
-app.use(router);
+// app.use(cors());
+// app.use(express.json());
+// app.use(router);
 
 (async () => {
   try {
@@ -19,4 +20,4 @@ app.use(router);
   }
 })()
 
-export default app;
+export default app; 
