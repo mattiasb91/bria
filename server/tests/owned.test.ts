@@ -1,5 +1,5 @@
 import request from "supertest";
-import { realBook } from "./mockData.js";
+import { userBook } from "./mockData.js";
 import { expect, test, vi, beforeEach } from "vitest";
 import app from "../app.js";
 import UserBook from "./../models/userBooks.js";
@@ -12,11 +12,11 @@ beforeEach(() => {
 //tests for router.put("/userbooks/:id/owned", updateUserBookOwned);
 //happy path. owned successfully updated
 test("should update the specific book owned flag and return the updated book", async () => {
-  const id = realBook.bookId;
+  const id = userBook.bookId;
   const ownedUpdate = { owned: false };
 
   const updatedBook = {
-    ...realBook,
+    ...userBook,
     owned: false,
     updatedAt: new Date().toISOString(),
   };
@@ -39,7 +39,7 @@ test("should update the specific book owned flag and return the updated book", a
 //unhappy path. DB update throws 500
 
 test("should return 500 whe updating owned fails", async () => {
-  const id = realBook.bookId;
+  const id = userBook.bookId;
   const ownedUpdate = { owned: true };
 
   //mock:

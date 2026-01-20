@@ -1,6 +1,6 @@
 import { describe, test, expect, vi, beforeEach } from 'vitest';
 import request from 'supertest';
-import app from '../index.js';
+import app from '../app.js';
 import { userBook } from './mockData.js';
 import UserBook from '../models/userBooks.js';
 
