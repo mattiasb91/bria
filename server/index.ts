@@ -1,4 +1,4 @@
-import  app from "./app.js";
+import app from "./app.js";
 // import express from "express";
 // import cors from "cors";
 // import router from "./router.js";
@@ -20,4 +20,6 @@ const PORT = 3000;
   }
 })()
 
-export default app; 
+// export default app;
+// take the listening logic, take it out into differernt file.
+// when you import the app into test, listened hasent happened

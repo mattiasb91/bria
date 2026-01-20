@@ -6,6 +6,10 @@
   "scripts": {
     "test": "vitest",
     "test:favorite": "vitest run tests/updateFavorite.test.ts",
+    "test:postbook": "vitest run tests/postBook.test.ts",
+    "test:owned": "vitest run tests/owned.test.ts",
+    "test:status": "vitest run tests/status.test.ts",
+
     "dev": "node --loader ts-node/esm ./index.ts"
   },
   "keywords": [],
