@@ -1,4 +1,4 @@
-import app from "../index.js";
+import app from "../app.js";
 import request from "supertest";
 import { expect, test, vi, afterEach } from "vitest";
 import UserBook from "./../models/userBooks.js";
@@ -13,7 +13,7 @@ afterEach(() => {
 //Happy path first: book status successfully updated:
 
 test("should update the specific book status and return the updated book", async () => {
-  const id = userBook._id;
+  const id = userBook.bookId;
 
   const statusUpdate = { status: "reading" };
 
@@ -40,7 +40,7 @@ test("should update the specific book status and return the updated book", async
 //unhappy path second; send error when not succeeding to update book:
 
 test("should return 500 when updating the book fails", async () => {
-  const id = userBook._id;
+  const id = userBook.bookId;
   const statusUpdate = { status: "reading" };
 
   const error = new Error("Database error");
