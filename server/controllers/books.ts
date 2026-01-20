@@ -7,7 +7,6 @@ import type { Request, Response } from "express";
 const DEFAULT_USER_ID = "64a0c0b0c3f8fa2d1e4b0001";
 
 export async function postBook(req: Request, res: Response) {
-  console.log("req body: ", req.body);
   const {
     title,
     authors,
@@ -22,7 +21,6 @@ export async function postBook(req: Request, res: Response) {
     // rating,
   } = req.body;
   let { isbn } = req.body;
-  console.log("userdata: ", userData);
 
   isbn = typeof isbn === "string" && isbn.trim() ? isbn.trim() : undefined;
 
@@ -33,7 +31,6 @@ export async function postBook(req: Request, res: Response) {
       book = await Book.findOne({ isbn: isbn }); //TODO: this won't add new books if the isbn is empty if there is at least one entry in the db that has no isbn
       // no book is found for this isbn then add it
       if (!book) {
-        // console.log('final book object before saving: ', book);
         book = await Book.create({
           title,
           authors,
@@ -77,16 +74,13 @@ export async function postBook(req: Request, res: Response) {
         format: userData.format,
       });
     }
-    console.log("userbook in post book books controller: ", userBook);
 
     //rebuild correctly by fetching the book
     let bookToSendBack = await UserBook.findOne({ _id: userBook._id }).populate(
-      "bookId"
+      "bookId",
     );
-    console.log("book to send back: ", bookToSendBack);
     res.status(201).json(bookToSendBack);
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       message: "Something went wrong when adding to the database - postBook",
     });

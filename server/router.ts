@@ -18,7 +18,7 @@ router.get("/userbooks", getUserBooks); // TO DO: Remember to change it on the f
 router.put("/userbooks/:id/status", updateUserBookStatus); // update book status
 router.put("/userbooks/:bookId/owned", updateUserBookOwned); // update book owned
 router.put("/userbooks/:id/favorite", updateUserBookFavorite); // update book favorite
-router.put("/userbooks/:id/progress", updateUserBookProgress); // update book progress
+router.put("/userbooks/:bookId/progress", updateUserBookProgress); // update book progress
 router.put("/userbooks/:id/format", updateUserBookFormat); // update book format
 router.put("/userbooks/:id/shelves", updateUserBookShelves); // update book shelves
 // TODO: add all endpoints here
