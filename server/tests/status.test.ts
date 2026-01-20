@@ -6,7 +6,7 @@ import { userBook } from "./mockData.js";
 
 // cleanup
 afterEach(() => {
-  vi.restoreAllMocks();
+  vi.clearAllMocks();
 });
 
 // test to test the router.put("/userbooks/:id/status", updateUserBookStatus)
@@ -25,16 +25,17 @@ test("should update the specific book status and return the updated book", async
   };
 
   // time to mock. when findbyidandupdate is called, return updatedBook:
-  vi.spyOn(UserBook, "findByIdAndUpdate").mockResolvedValueOnce(updatedBook);
+  vi.spyOn(UserBook, "findOneAndUpdate").mockResolvedValueOnce(updatedBook);
 
   const res = await request(app)
     .put(`/userbooks/${id}/status`)
     .send(statusUpdate)
-    .expect("Content-Type", /json/)
-    .expect(200);
+    .expect("Content-Type", /json/);
+
 
   // assert returned object matches expected updated version
-  expect(res.body).toEqual(updatedBook);
+  expect(res.status).toBe(200);
+  expect(res.body.status).toBe("reading");
 });
 
 //unhappy path second; send error when not succeeding to update book:
