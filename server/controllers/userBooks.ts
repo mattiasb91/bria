@@ -45,9 +45,11 @@ export async function updateUserBookOwned(req: Request, res: Response) {
   console.log(bookId);
   console.log(owned);
   try {
-    const updatedBook = await UserBook.findByIdAndUpdate(bookId, owned, {
-      new: true,
-    });
+    const updatedBook = await UserBook.findOneAndUpdate(
+      { bookId: bookId }, 
+      owned, 
+      { new: true }
+    );
     res.status(200).json(updatedBook);
   } catch (error) {
     console.log(error);
@@ -62,9 +64,11 @@ export async function updateUserBookFavorite(req: Request, res: Response) {
   console.log(bookId);
   console.log(favorite);
   try {
-    const updatedBook = await UserBook.findByIdAndUpdate(bookId, favorite, {
-      new: true,
-    });
+     const updatedBook = await UserBook.findOneAndUpdate(
+      { bookId: bookId }, 
+      favorite, 
+      { new: true }
+    );
     res.status(200).json(updatedBook);
   } catch (error) {
     console.log(error);
