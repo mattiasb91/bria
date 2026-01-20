@@ -2,18 +2,7 @@ import { describe, test, expect, vi, beforeEach } from 'vitest';
 import request from 'supertest';
 import app from '../index.js';
 import { userBook } from './mockData.js';
-
-//MUST use 'vi.hoisted' for variables used inside 'vi.mock'
-const { mockFindOneAndUpdate: mockFindOneAndUpdate } = vi.hoisted(() => ({
-  mockFindOneAndUpdate: vi.fn()
-}));
-
-// Mock using the exact path used in the controller
-vi.mock('../models/userBooks.js', () => ({
-  default: {
-    findOneAndUpdate: mockFindOneAndUpdate
-  }
-}));
+import UserBook from '../models/userBooks.js';
 
 describe('updateUserBookFavorite Controller', () => {
   const URL = `/userbooks/${userBook.bookId}/favorite`; 
@@ -26,7 +15,7 @@ describe('updateUserBookFavorite Controller', () => {
     const updatefavorite = { favorite: false };
     const mockResponse = { ...userBook, ...updatefavorite };
 
-    mockFindOneAndUpdate.mockResolvedValueOnce(mockResponse);
+    vi.spyOn(UserBook,"findOneAndUpdate").mockResolvedValueOnce(mockResponse);
 
     const res = await request(app)
       .put(URL) 
@@ -37,7 +26,7 @@ describe('updateUserBookFavorite Controller', () => {
   });
 
   test('returns 500 when the database throws an error', async () => {
-    mockFindOneAndUpdate.mockRejectedValueOnce(new Error('DB Fail'));
+    vi.spyOn(UserBook, "findOneAndUpdate").mockRejectedValueOnce(new Error('DB Fail'));
 
     const res = await request(app)
       .put(URL)
