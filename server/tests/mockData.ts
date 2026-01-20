@@ -20,6 +20,28 @@ export const userBook = {
   __v: 0,
 };
 
+export const realBook = {
+  _id: "6968c4edfd01be5a469aae10",
+  userId: "64a0c0b0c3f8fa2d1e4b0001",
+  bookId: "6968c4edfd01be5a469aae0d",
+  shelfIds: [
+    "64a0c0b0c3f8fa2d1e4c0011",
+    "64a0c0b0c3f8fa2d1e4c0002",
+    "64a0c0b0c3f8fa2d1e4c0003",
+  ],
+  progress: 0,
+  readCount: 0,
+  read: false,
+  owned: false,
+  favorite: false,
+  status: "not reading",
+  format: ["kindle"],
+  reads: [],
+  createdAt: "2026-01-15T10:43:57.455Z",
+  updatedAt: "2026-01-20T10:04:43.513Z",
+  __v: 0,
+};
+
 export const book = {
   title: "Test Book",
   authors: ["T. Test"],

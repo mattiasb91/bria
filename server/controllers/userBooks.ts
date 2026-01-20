@@ -24,8 +24,7 @@ export async function getUserBooks(req: Request, res: Response) {
 export async function updateUserBookStatus(req: Request, res: Response) {
   const { bookId } = req.params;
   const status = req.body;
-  console.log(bookId);
-  console.log(status);
+
   try {
     const updatedBook = await UserBook.findByIdAndUpdate(bookId, status, {
       new: true,
@@ -42,10 +41,12 @@ export async function updateUserBookStatus(req: Request, res: Response) {
 export async function updateUserBookOwned(req: Request, res: Response) {
   const { bookId } = req.params;
   const owned = req.body;
-  console.log(bookId);
-  console.log(owned);
+
   try {
-    const updatedBook = await UserBook.findByIdAndUpdate(bookId, owned, {
+   /*  const updatedBook = await UserBook.findByIdAndUpdate(bookId, owned, {
+      new: true,
+    }); */
+    const updatedBook = await UserBook.findOneAndUpdate( {bookId}, owned, {
       new: true,
     });
     res.status(200).json(updatedBook);
@@ -56,6 +57,12 @@ export async function updateUserBookOwned(req: Request, res: Response) {
   }
 }
 
+/* const updatedBook = await UserBook.findOneAndUpdate(
+      { bookId: bookId }, // Change 'bookId' on the left to match your Schema field name
+      owned,
+      { new: true }
+    );
+ */
 export async function updateUserBookFavorite(req: Request, res: Response) {
   const { bookId } = req.params;
   const favorite = req.body;
