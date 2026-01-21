@@ -67,7 +67,7 @@ export async function updateUserBookFavorite(req: Request, res: Response) {
   try {
      const updatedBook = await UserBook.findOneAndUpdate(
       { bookId },
-      { favorite }, 
+      { favorite },
       { new: true }
     );
     res.status(200).json(updatedBook);
@@ -121,8 +121,8 @@ export async function updateUserBookShelves(req: Request, res: Response) {
   console.log(bookId);
   console.log(shelves);
   try {
-    const updatedBook = await UserBook.findByIdAndUpdate(
-      bookId,
+    const updatedBook = await UserBook.findOneAndUpdate(
+      {bookId},
       { shelfIds: shelves },
       { new: true }
     );
