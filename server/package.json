@@ -12,6 +12,7 @@
     "test:app": "vitest run tests/app.test.ts",
     "test:format": "vitest run tests/updateFormat.test.ts",
 
+    "test:progress": "vitest run tests/progress.test.ts",
     "dev": "node --loader ts-node/esm ./index.ts"
   },
   "keywords": [],

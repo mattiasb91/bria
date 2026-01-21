@@ -31,6 +31,8 @@ test("should update the specific book owned flag and return the updated book", a
   // verify response
   expect(res.status).toBe(200);
   expect(res.body.owned).toBe(false);
+  expect(res.body.bookId).toBe(updatedBook.bookId);
+  expect(res.body.owned).toBe(updatedBook.owned);
 
   /* expect(res.body.bookId).toEqual(updatedBook.bookId);
   expect(res.body.owned).toEqual(updatedBook.owned); */
