@@ -1,13 +1,19 @@
 import app from "../app.js";
 import request from "supertest";
-import { expect, test } from "vitest";
+import { expect, test,vi } from "vitest";
+import UserBook from "../models/userBooks.js";
+
 
 test("Get the usersbook's details", async () => {
-  const res = await request(app)
-    .get("/userbooks")
-    .expect("Content-Type", /json/)
-    .expect(200);
-  expect(res.body);
+  
+  const mockFind = {
+    sort: vi.fn().mockReturnThis(),
+    populate: vi.fn().mockResolvedValue([{ title: "Mock Book", userId: "123" }])
+  };
+  vi.spyOn(UserBook, 'find').mockReturnValue(mockFind as any);
+  const res = await request(app).get("/userbooks");
+  expect(res.status).toBe(200);
+  expect(Array.isArray(res.body)).toBe(true);
 });
 
 test("should return 404 and JSON for non-existent routes", async () => {

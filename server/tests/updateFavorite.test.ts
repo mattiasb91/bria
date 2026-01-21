@@ -11,19 +11,25 @@ describe('updateUserBookFavorite Controller', () => {
     vi.clearAllMocks();
   });
 
-  test('successfully toggles the favorite status', async () => {
-    const updatefavorite = { favorite: false };
-    const mockResponse = { ...userBook, ...updatefavorite };
+test('successfully toggles the favorite status', async () => {
+  const updatefavorite = { favorite: false };
+  const mockResponse = { ...userBook, favorite: false };
 
-    vi.spyOn(UserBook,"findOneAndUpdate").mockResolvedValueOnce(mockResponse);
+  const spy = vi.spyOn(UserBook, "findOneAndUpdate").mockResolvedValueOnce(mockResponse);
 
-    const res = await request(app)
-      .put(URL) 
-      .send(updatefavorite);
+  const res = await request(app)
+    .put(URL) 
+    .send(updatefavorite);
 
-    expect(res.status).toBe(200);
-    expect(res.body.favorite).toBe(false);
-  });
+  expect(res.status).toBe(200);
+  expect(res.body.favorite).toBe(false);
+
+  expect(spy).toHaveBeenCalledWith(
+    { bookId: userBook.bookId }, 
+    { favorite: false },
+    { new: true }         
+  );
+});
 
   test('returns 500 when the database throws an error', async () => {
     vi.spyOn(UserBook, "findOneAndUpdate").mockRejectedValueOnce(new Error('DB Fail'));
