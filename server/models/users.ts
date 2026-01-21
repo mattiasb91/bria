@@ -1,5 +1,5 @@
 'use strict';
-import { Schema, model, Document,  type InferSchemaType } from 'mongoose';
+import { Schema, model, Document, type InferSchemaType } from 'mongoose';
 
 
 const userSchema = new Schema({
@@ -21,7 +21,7 @@ const userSchema = new Schema({
 export type UserType = InferSchemaType<typeof userSchema>;
 
 
-export interface IUser extends UserType, Document {}
+export interface IUser extends UserType, Document { }
 
 const User = model<IUser>('User', userSchema);
 

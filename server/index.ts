@@ -1,14 +1,7 @@
 import app from "./app.js";
-// import express from "express";
-// import cors from "cors";
-// import router from "./router.js";
 import { connectDB } from "./db.js";
-//const app = express();
-const PORT = 3000;
 
-// app.use(cors());
-// app.use(express.json());
-// app.use(router);
+const PORT = 3000;
 
 (async () => {
   try {
@@ -19,7 +12,3 @@ const PORT = 3000;
     console.log('could not start server');
   }
 })()
-
-// export default app;
-// take the listening logic, take it out into differernt file.
-// when you import the app into test, listened hasent happened

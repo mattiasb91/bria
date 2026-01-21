@@ -1,11 +1,11 @@
 import app from "../app.js";
 import request from "supertest";
-import { expect, test,vi } from "vitest";
+import { expect, test, vi } from "vitest";
 import UserBook from "../models/userBooks.js";
 
 
 test("Get the usersbook's details", async () => {
-  
+
   const mockFind = {
     sort: vi.fn().mockReturnThis(),
     populate: vi.fn().mockResolvedValue([{ title: "Mock Book", userId: "123" }])
@@ -25,12 +25,3 @@ test("should return 404 and JSON for non-existent routes", async () => {
     message: "Not Found",
   });
 });
-
-// Test userbooks update status
-
-// Post request successful creation
-// Post request failed creation
-
-//Db connection  failed and successful attempt
-
-//use mock db data

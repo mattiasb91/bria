@@ -1,5 +1,5 @@
 'use strict';
-import { Schema,model, Document, type InferSchemaType, Types} from "mongoose";
+import { Schema, model, Document, type InferSchemaType, Types } from "mongoose";
 
 const shelfSchema = new Schema({
   userId: {
@@ -22,8 +22,8 @@ const shelfSchema = new Schema({
 export type ShelfType = InferSchemaType<typeof shelfSchema>
 
 export interface IShelf extends ShelfType, Document {
-     userId: Types.ObjectId;
+  userId: Types.ObjectId;
 }
-const Shelf = model<IShelf>('Shelf',shelfSchema);
+const Shelf = model<IShelf>('Shelf', shelfSchema);
 
 export default Shelf;
