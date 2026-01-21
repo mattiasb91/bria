@@ -1,5 +1,5 @@
 import request from "supertest";
-import { realBook } from "./mockData.js";
+import { userBook } from "./mockData.js";
 import { expect, test, vi, beforeEach } from "vitest";
 import app from "../app.js";
 import UserBook from "./../models/userBooks.js";
@@ -9,15 +9,13 @@ beforeEach(() => {
   vi.clearAllMocks();
 });
 
-// tests for router.put("/userbooks/:bookId/progress", updateUserBookProgress);
-
 // happy path: progress successfully updated
 test("should update the specific book progress and return the updated book", async () => {
-  const bookId = realBook.bookId;
+  const bookId = userBook.bookId;
   const progressUpdate = { progress: 10 };
 
   const updatedBook = {
-    ...realBook,
+    ...userBook,
     progress: 10,
     updatedAt: new Date().toISOString(),
   };
@@ -36,7 +34,7 @@ test("should update the specific book progress and return the updated book", asy
 
 // unhappy path: DB update throws 500
 test("should return 500 when updating progress fails", async () => {
-  const bookId = realBook.bookId;
+  const bookId = userBook.bookId;
   const progressUpdate = { progress: 10 };
 
   vi.spyOn(UserBook, "findByIdAndUpdate").mockRejectedValueOnce(
