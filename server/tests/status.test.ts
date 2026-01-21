@@ -25,17 +25,26 @@ test("should update the specific book status and return the updated book", async
   };
 
   // time to mock. when findbyidandupdate is called, return updatedBook:
-  vi.spyOn(UserBook, "findOneAndUpdate").mockResolvedValueOnce(updatedBook);
+  const spy = vi
+    .spyOn(UserBook, "findOneAndUpdate")
+    .mockResolvedValueOnce(updatedBook);
 
   const res = await request(app)
     .put(`/userbooks/${id}/status`)
     .send(statusUpdate)
     .expect("Content-Type", /json/);
 
-
   // assert returned object matches expected updated version
+
   expect(res.status).toBe(200);
   expect(res.body.status).toBe("reading");
+  expect(res.body.bookId).toBe(updatedBook.bookId);
+  expect(res.body.status).toBe(updatedBook.status);
+  expect(spy).toHaveBeenCalledWith(
+    { bookId: userBook.bookId },
+    { status: "reading" },
+    { new: true },
+  );
 });
 
 //unhappy path second; send error when not succeeding to update book:
@@ -47,13 +56,12 @@ test("should return 500 when updating the book fails", async () => {
   const error = new Error("Database error");
 
   // Mock: this time we make it reject instead of resolve
-  const spy = vi
-    .spyOn(UserBook, "findByIdAndUpdate")
-    .mockRejectedValueOnce(error);
+  vi.spyOn(UserBook, "findOneAndUpdate").mockRejectedValueOnce(error);
 
   const res = await request(app)
     .put(`/userbooks/${id}/status`)
     .send(statusUpdate)
     .expect("Content-Type", /json/)
-    .expect(500); // we expect a server error now
+
+  expect(res.status).toBe(500);
 });
