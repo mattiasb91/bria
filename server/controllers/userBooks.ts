@@ -61,13 +61,13 @@ export async function updateUserBookOwned(req: Request, res: Response) {
  */
 export async function updateUserBookFavorite(req: Request, res: Response) {
   const { bookId } = req.params;
-  const favorite = req.body;
-  console.log(bookId);
-  console.log(favorite);
+  const {favorite} = req.body;
+  // console.log(bookId);
+  // console.log(favorite);
   try {
      const updatedBook = await UserBook.findOneAndUpdate(
-      { bookId: bookId },
-      favorite,
+      { bookId },
+      { favorite }, 
       { new: true }
     );
     res.status(200).json(updatedBook);
@@ -98,12 +98,12 @@ export async function updateUserBookProgress(req: Request, res: Response) {
 export async function updateUserBookFormat(req: Request, res: Response) {
   const { bookId } = req.params;
   const { format } = req.body;
-  console.log(bookId);
-  console.log("full req.bod format: ", req.body);
-  console.log(format);
+  // console.log(bookId);
+  // console.log("full req.bod format: ", req.body);
+  // console.log(format);
   try {
-    const updatedBook = await UserBook.findByIdAndUpdate(
-      bookId,
+    const updatedBook = await UserBook.findOneAndUpdate(
+      {bookId},
       { format },
       { new: true }
     );
