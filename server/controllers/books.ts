@@ -17,8 +17,6 @@ export async function postBook(req: Request, res: Response) {
     publishedDate,
     description,
     userData,
-    // genres,
-    // rating,
   } = req.body;
   let { isbn } = req.body;
 
@@ -28,7 +26,7 @@ export async function postBook(req: Request, res: Response) {
     let book;
 
     if (isbn) {
-      book = await Book.findOne({ isbn: isbn }); //TODO: this won't add new books if the isbn is empty if there is at least one entry in the db that has no isbn
+      book = await Book.findOne({ isbn: isbn });
       // no book is found for this isbn then add it
       if (!book) {
         book = await Book.create({
@@ -41,23 +39,18 @@ export async function postBook(req: Request, res: Response) {
           pages,
           publishedDate,
           description,
-          // genres,
-          // rating,
         });
       }
     } else {
       book = await Book.create({
         title,
         authors,
-        // isbn,
         cover,
         worksKey,
         editionKey,
         pages,
         publishedDate,
         description,
-        // genres,
-        // rating,
       });
     }
 
@@ -85,9 +78,4 @@ export async function postBook(req: Request, res: Response) {
       message: "Something went wrong when adding to the database - postBook",
     });
   }
-}
-
-export async function getBooks(req: Request, res: Response) {
-  try {
-  } catch (error) {}
 }

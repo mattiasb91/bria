@@ -72,8 +72,7 @@ const userBookSchema = new Schema({
 
 export type UserBookType = InferSchemaType<typeof userBookSchema>;
 
-// This interface allows you to use mongoose-specific properties 
-// and ensures userId/bookId are treated as ObjectIds
+
 export interface IUserBook extends UserBookType, Document {
   userId: Types.ObjectId;
   bookId: Types.ObjectId;
