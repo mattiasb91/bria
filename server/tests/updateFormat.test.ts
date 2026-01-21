@@ -1,14 +1,13 @@
 import { describe, test, expect, vi, beforeEach } from 'vitest';
 import request from 'supertest';
 import app from '../app.js';
-import { book, userBook } from './mockData.js';
+import { userBook } from './mockData.js';
 import UserBook from '../models/userBooks.js';
-import { format } from 'node:path';
 
 
 describe('updateUserBookFormat Controller', () => {
   const URL = `/userbooks/${userBook.bookId}/format`;
-  
+
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -17,18 +16,18 @@ describe('updateUserBookFormat Controller', () => {
     const updateformat = { format: 'kindle' };
     const mockResponse = { ...userBook, ...updateformat };
 
-   const spy = vi.spyOn(UserBook,"findOneAndUpdate").mockResolvedValueOnce(mockResponse);
+    const spy = vi.spyOn(UserBook, "findOneAndUpdate").mockResolvedValueOnce(mockResponse);
 
     const res = await request(app)
-      .put(URL) 
+      .put(URL)
       .send(updateformat);
 
     expect(res.status).toBe(200);
     expect(res.body.format).toBe('kindle');
     expect(spy).toHaveBeenCalledWith(
-      {bookId: userBook.bookId}, 
-      {format: 'kindle'},
-      {new: true }
+      { bookId: userBook.bookId },
+      { format: 'kindle' },
+      { new: true }
     );
   });
 
