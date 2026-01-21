@@ -11,6 +11,7 @@
     "test:status": "vitest run tests/status.test.ts",
     "test:app": "vitest run tests/app.test.ts",
     "test:format": "vitest run tests/updateFormat.test.ts",
+    "test:shelves": "vitest run tests/shelves.test.ts",
 
     "test:progress": "vitest run tests/progress.test.ts",
     "dev": "node --loader ts-node/esm ./index.ts"

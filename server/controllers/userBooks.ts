@@ -61,7 +61,7 @@ export async function updateUserBookFavorite(req: Request, res: Response) {
     const updatedBook = await UserBook.findOneAndUpdate(
       { bookId },
       { favorite },
-      { new: true },
+      { new: true }
     );
     res.status(200).json(updatedBook);
   } catch (error) {
@@ -105,8 +105,8 @@ export async function updateUserBookShelves(req: Request, res: Response) {
   const { bookId } = req.params;
   const { shelves } = req.body;
   try {
-    const updatedBook = await UserBook.findByIdAndUpdate(
-      bookId,
+    const updatedBook = await UserBook.findOneAndUpdate(
+      {bookId},
       { shelfIds: shelves },
       { new: true },
     );

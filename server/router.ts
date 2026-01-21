@@ -20,7 +20,7 @@ router.put("/userbooks/:bookId/owned", updateUserBookOwned); // update book owne
 router.put("/userbooks/:bookId/favorite", updateUserBookFavorite); // update book favorite
 router.put("/userbooks/:bookId/format", updateUserBookFormat); // update book format
 router.put("/userbooks/:bookId/progress", updateUserBookProgress); // update book progress
-router.put("/userbooks/:id/shelves", updateUserBookShelves); // update book shelves
+router.put("/userbooks/:bookId/shelves", updateUserBookShelves); // update book shelves
 // TODO: add all endpoints here
 
 export default router;
