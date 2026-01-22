@@ -5,6 +5,10 @@
     "rootDir": "./src",
     "outDir": "./dist",
 
+    //added these two to accept .js imports into ts files:
+    "allowJs": true,
+    "moduleResolution": "nodenext",
+
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "nodenext",
@@ -40,5 +44,8 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true
-  }
+
+  },
+  // added this line, it tells typescript to Only treat files inside src/ as part of the TypeScript program
+  "include": ["src"]
 }
