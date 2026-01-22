@@ -14,7 +14,7 @@ import {
 const router = express.Router();
 
 router.post("/books", postBook); // add book to user
-router.get("/userbooks", getUserBooks); // TO DO: Remember to change it on the frontend
+router.get("/userbooks", getUserBooks); // send all userbooks
 router.put("/userbooks/:bookId/status", updateUserBookStatus); // update book status
 router.put("/userbooks/:bookId/owned", updateUserBookOwned); // update book owned
 router.put("/userbooks/:bookId/favorite", updateUserBookFavorite); // update book favorite
