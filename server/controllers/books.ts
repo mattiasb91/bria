@@ -27,7 +27,8 @@ export async function postBook(req: Request, res: Response) {
 
     if (isbn) {
       book = await Book.findOne({ isbn: isbn });
-      // no book is found for this isbn then add it
+
+      // if no book is found for this isbn then add it
       if (!book) {
         book = await Book.create({
           title,

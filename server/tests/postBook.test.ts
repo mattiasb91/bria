@@ -56,11 +56,13 @@ test("Create a new book with ISBN", async () => {
 
   // search by ISBN -> not found
   vi.spyOn(Book, "findOne").mockResolvedValueOnce(null as any);
+
   // create Book
   vi.spyOn(Book, "create").mockResolvedValueOnce(createdBook as any);
 
   // check if UserBook exists -> not found
   vi.spyOn(UserBook, "findOne").mockResolvedValueOnce(null as any);
+
   // create UserBook
   vi.spyOn(UserBook, "create").mockResolvedValueOnce(createdUserBook as any);
 
