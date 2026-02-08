@@ -14,10 +14,7 @@ beforeEach(() => {
 test("should update the shelves listed in the book and return the updated book", async () => {
   const id = userBook.bookId;
   const shelvesUpdate = {
-    shelves: [
-      "64a0c0b0c3f8fa2d1e4c0012",
-      "64a0c0b0c3f8fa2d1e4c0004",
-    ]
+    shelves: ["64a0c0b0c3f8fa2d1e4c0012", "64a0c0b0c3f8fa2d1e4c0004"],
   };
 
   //create a realistic updated version of the userBook mock:
@@ -28,20 +25,21 @@ test("should update the shelves listed in the book and return the updated book",
   };
 
   //mock: when findOneAndUpdate is called, return updatedBook:
-  const spy = vi.spyOn(UserBook, "findOneAndUpdate").mockResolvedValueOnce(updatedBook);
+  const spy = vi
+    .spyOn(UserBook, "findOneAndUpdate")
+    .mockResolvedValueOnce(updatedBook);
 
   const res = await request(app)
     .put(`/userbooks/${id}/shelves`)
     .send(shelvesUpdate)
     .expect("Content-Type", /json/);
 
-    //check that returned object matches expected updated version:
-    expect(res.status).toBe(200);
+  //check that returned object matches expected updated version:
+  expect(res.status).toBe(200);
   expect(res.body.shelfIds).toEqual([
-      "64a0c0b0c3f8fa2d1e4c0012",
-      "64a0c0b0c3f8fa2d1e4c0004",
-    ]);
-    console.log("derp: ", spy.mock.calls);
+    "64a0c0b0c3f8fa2d1e4c0012",
+    "64a0c0b0c3f8fa2d1e4c0004",
+  ]);
   expect(res.body.bookId).toBe(updatedBook.bookId);
   expect(res.body.status).toBe(updatedBook.status);
   expect(spy).toHaveBeenCalledWith(
@@ -56,10 +54,7 @@ test("should update the shelves listed in the book and return the updated book",
 test("should return 500 when updating the book fails", async () => {
   const id = userBook.bookId;
   const shelvesUpdate = {
-    shelves: [
-      "64a0c0b0c3f8fa2d1e4c0012",
-      "64a0c0b0c3f8fa2d1e4c0004",
-    ]
+    shelves: ["64a0c0b0c3f8fa2d1e4c0012", "64a0c0b0c3f8fa2d1e4c0004"],
   };
 
   const error = new Error("Database error");
@@ -70,8 +65,7 @@ test("should return 500 when updating the book fails", async () => {
   const res = await request(app)
     .put(`/userbooks/${id}/shelves`)
     .send(shelvesUpdate)
-    .expect("Content-Type", /json/)
+    .expect("Content-Type", /json/);
 
   expect(res.status).toBe(500);
 });
-
